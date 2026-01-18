@@ -3,40 +3,23 @@ destination-path qpudatashards/au_org_integrated
 
 csv
 destination-path,module,version,role,security-protocol,interop-standard,identity-mgmt,ai-agent-integration,device-type,authentication,digital-twin,edge-analytics,compliance,log-persistence
-vnode-au-profile,OrgIntegratedAugCitizen-Core,1.0.0,AugCitizenProfile,AES256-PostQ-TLS,ALN-ShardAPI,DID-VitalChain,MistralQwen,Organic+Cybernetic,FIDO2+BCI-Token,Enabled,SNNLoadEstimator,GDPR+HIPAA+EUAI+ADA,HyperledgerVital
-vnode-au-paycomp,OrgIntegratedAugCitizen-Paycomp,1.0.0,PaymentConsentGuard,Argon2-mTLS,Paycomp-API,KYC+DID,MistralQwen,ImplantedNFC+XRCompanion,FIDO2Passkey,Enabled,L_tCorridorCalc,PCI-DSS+SOX,CephRADOSLogs
-vnode-au-xr,OrgIntegratedAugCitizen-XR,1.0.0,XRConsentRouter,ChaCha20-ZT,XRGrid-WS,OIDC-Vital,NeuroGrid7GSim,XRHeadset+BCI,SessionToken+BCI-State,Enabled,CognitiveLoadSNN,GDPR+COPPA+CCPA,ImmutableXRLogs
-vnode-au-governance,OrgIntegratedAugCitizen-Gov,1.0.0,RightsKernel,AES256-GCM,GraphQL-Safe,DID-Gov,CybercoreBrain,HerculesCore,GovernanceNode,DNAMFA-Role3,Enabled,RightsViolationStats,ISO42001+NIST-AI,HyperledgerVital
-vnode-au-lab,OrgIntegratedAugCitizen-Lab,1.0.0,ResearchNode,AES256-PostQ-TLS,BCI-Lab-API,OIDC-Research,Loihi/Akida-Cluster,BCI+Wearables,ServiceAccountJWT,Enabled,STDPAdaptationMetrics,FDA+IRB+GDPR,CephRADOSLogs
-vnode-au-dreamnet,OrgIntegratedAugCitizen-Dreamnet,1.0.0,SleepStateRouter,AES256-KernelBus,Dreamnet-API,DID-VitalChain,StateOnlyAI,XR+SleepSensors,SlotToken,Enabled,DreamGamingCarbonIndex,GDPR+Neurorights,HyperledgerVital
-vnode-au-cyberswarm,OrgIntegratedAugCitizen-Cyberswarm,1.0.0,SafetyGeometry,Argon2-TLS,Cyberswarm-API,DID-VitalChain,VitalNetSafetyKernel,XR+Wearables,MFAPolicyToken,Enabled,KernelDistanceMetrics,EUAI+FDA-SaMD,KernelAudit
-vnode-au-smartcity,OrgIntegratedAugCitizen-Mesh,1.0.0,SmartCityIngress,AES256-PostQ-TLS,MQTT-Secure-SNN,OIDC-Vital,NeuroTraffic+AssistiveNodes,SensorNet+BCI-Assist,FIDO2Edge,Enabled,AccessibilityKERScores,OECD+UN-Urban,HyperledgerVital
+vnode-au-paycomp,OrgIntegratedAugCitizen-Paycomp,1.0.0,PaymentConsentGuard,Argon2-mTLS,Paycomp-API,KYC+DID,MistralQwen,ImplantedNFC+XRCompanion,FIDO2Passkey+BCI-Token,Enabled,L_tCorridorCalc,PCI-DSS+GDPR+ADA,CephRADOSLogs
 endcsv
 
 csv
 field,datatype,description,required,scope
-au_status,string,"organically_integrated_augmented_citizen | non_augmented | other",true,all
-cap_input_speech,float,"0.0-1.0 normalized reliable speech channel",true,profile
-cap_input_internal_bio,float,"0.0-1.0 normalized reliable internal biophysical control",true,profile
-latency_tolerance_ms_min,int,"Minimum comfortable round-trip latency",true,profile
-latency_tolerance_ms_max,int,"Maximum tolerable latency before overload risk",true,profile
-max_decisions_per_hour,int,"Safe bound on high-stakes decisions per hour",true,profile
-max_prompts_per_hour,int,"Safe bound on any prompts per hour",true,profile
-preferred_consent_mode,string,"bcistate | xr-visual | caregiver-coapproval | mixed",true,profile
-interface_primary,string,"primary interface: implanted_nfc | xr_companion | phone | caregiver_proxy",true,profile
-interface_backup_1,string,"first backup interface",false,profile
-interface_backup_2,string,"second backup interface",false,profile
-kernel_distance_threshold,float,"max allowed Cyberswarm/Cybercore safety-kernel distance d(x) before auto-degrade",true,safety
-neuromod_amp_max,float,"max neuromodulation amplitude for any stimulation-capable hardware",false,safety
-device_duty_cycle_max,float,"max duty-cycle fraction for cybernetic devices in 24h",true,safety
-no_exclusion_basic_services,bool,"forbid denial of food, medicine, transit due to augmentation",true,rights
-no_covert_neurocontrol,bool,"forbid undisclosed neuromodulation or intent steering",true,rights
-revocable_at_will,bool,"citizen can revoke consent and downgrade capabilities at any time",true,rights
-no_score_from_inner_state,bool,"forbid use of neural/inner state in credit/employment/scoring",true,rights
-feedback_label,string,"ok | borderline | too_much | felt_wrong | rights_violation_suspected",true,episode
-episode_context,string,"paycomp | xr | dreamnet | transit | civic | lab",true,episode
-episode_energy_joules,float,"session energy usage estimate for eco-metrics",false,episode
-consent_latency_ms,int,"measured time from prompt to confirmed consent",false,episode
+au_status,string,"organically_integrated_augmented_citizen | non_augmented | other",true,profile
+cap_input_speech,float,"0.0-1.0 reliability of speech channel",true,profile
+cap_input_internal_bio,float,"0.0-1.0 reliability of internal biophysical control",true,profile
+latency_tolerance_ms_min,int,"minimum comfortable round-trip latency",true,profile
+latency_tolerance_ms_max,int,"maximum tolerable latency before overload risk",true,profile
+max_decisions_per_hour,int,"safe bound on high-stakes decisions per hour",true,profile
+max_prompts_per_hour,int,"safe bound on any prompts per hour",true,profile
+preferred_consent_mode,string,"bcistate | xr_visual | external_device | caregiver_coapproval",true,profile
+interface_primary,string,"implanted_nfc | xr_companion | phone | caregiver_proxy",true,profile
+no_exclusion_basic_services,bool,"forbid denial of basic needs due to augmentation",true,rights
+feedback_label,string,"ok | borderline | too_much | felt_wrong | rights_violation_suspected",false,episode
+consent_latency_ms,int,"measured latency of last consent episode",false,episode
 endcsv
 
-hex-rollup 0x4F72672D496E74656772617465644175674D6573683A2061755F7374617475733D226F7267616E6963616C6C795F696E74656772617465645F6175676D656E7465645F636974697A656E222C207269676874736B65726E656C732C206B65726E656C5F64697374616E63655F7468726573686F6C64732C20616E6420766E6F64655F61755F706179636F6D70206D616B65205068786C61627320636F6D70617469626C652077697468206F7267616E69635F63707520616E64206E657572616C2D726F706564204149
+hex-rollup 0x41754F7267496E7465677261746564436974697A656E506179636F6D703A2070726F66696C652D6C6576656C2061755F7374617475732C206C6174656E63795F62616E64732C20616E64206D61785F70726F6D7074735F7065725F686F757220617265206D616368696E652D7265616461626C652067756172647320666F7220504F53
