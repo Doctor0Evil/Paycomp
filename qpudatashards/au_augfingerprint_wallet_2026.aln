@@ -1,0 +1,55 @@
+aln
+filename qpudatashards/au_augfingerprint_wallet_2026.aln
+destination-path qpudatashards/au_augfingerprint
+
+csv
+destination-path,module,version,role,security-protocol,interop-standard,identity-mgmt,ai-agent-integration,device-type,authentication,digital-twin,edge-analytics,compliance,log-persistence
+vnode-au-augfp,AugFingerprint-NFC-InternalBio,1.0.0,WalletConsentGuard,Argon2-mTLS,Paycomp-API,DID-Bostrom,AI-Companion-InternalBio,ImplantedNFC,FIDO2PasskeyBCI-Token,Enabled,NeuroStateEstimator,PCI-DSSGDPRNeurorights,HyperledgerVital
+endcsv
+
+csv
+field,datatype,description,required,scope
+walletdid,string,DID for this augmented-citizen wallet,true,profile
+austatus,string,organicallyintegratedaugmentedcitizen nonaugmented other,true,profile
+
+interfacetype,string,implantednfc wearablenfc phonecard,true,profile
+controlmode,string,internalbiophysical externalswitch voice mixed,true,profile
+assistmode,bool,AI-companion must mediate all payments,true,profile
+directusergesture,bool,any visible gesture is required for consent,false,profile
+consentchannel,string,AIinferredstateonly bcistate gesture voice mixed,true,profile
+quantifiedlearning,bool,AI uses lane-switch profiles with strict corridors,true,profile
+
+speechreliable,bool,normalized reliability of speech channel,true,profile
+mobilityprofile,string,limitedprecisionlowfrequency fullrange,true,profile
+oculuscortexcalibrated,bool,oculus-cortex latency/offset calibration valid,true,profile
+latencyprofile,string,spiky smooth unknown,true,profile
+maxcognitiveload,float,0.0-1.0 safe ceiling for organiccpu load,true,profile
+
+maxautoamountmills,uint,maximum auto-approvable amount in mills 0.001 USD,true,profile
+maxdailyspendmills,uint,maximum daily spend in mills,true,profile
+maxpaymentsperhour,uint,maximum settled payments per hour,true,profile
+maxpromptsperhour,uint,maximum prompts per hour across channels,true,profile
+
+learningmode,string,quantifiedlaneswitching staticcorridors,true,profile
+aiconsentpolicy,string,conservative balanced,true,profile
+minstabilitytimems,uint,minimum ms S_t must stay in corridor before consent,true,profile
+
+noexclusionbasicservices,bool,forbid denial of ServiceClassBasic due to augmentation,true,rights
+noneurocoercion,bool,forbid coercive access to neural data for basic services,true,rights
+revocableatwill,bool,consent to telemetry or duties is revocable without service loss,true,rights
+noscorefrominnerstate,bool,forbid inner-state based scoring for credit or policing,true,rights
+
+rprivacy,float,0.0-1.0 residual privacy risk,true,safety
+rfraud,float,0.0-1.0 residual fraud risk,true,safety
+rtracking,float,0.0-1.0 residual tracking risk,true,safety
+eaccessibility,float,0.0-1.0 ecosocial benefit from hands-free access,true,safety
+
+neuros_smin,float,lower bound of safe consent corridor S_min,true,safety
+neuros_smax,float,upper bound of safe consent corridor S_max,true,safety
+neurol_loadmax,float,maximum allowed organiccpu load within safe band,true,safety
+
+consentauditlogenabled,bool,enable local audit logging for consent episodes,true,profile
+endcsv
+
+hex-rollup 0x417544696441756746696E6765727072696E743A2077616C6C65746469642C2061757374617475732C20696E74657266616365747970652C20636F6E74726F6C6D6F64652C206173736973746D6F64652C20636F6E73656E746368616E6E656C2C207175616E7469666965646C6561726E696E672C206D6178636F676E69746976656C6F61642C206D61786175746F616D6F756E746D696C6C732C206B45522C206E6575726F636F727269646F722C206B65726E656C64697374616E63652C20636F6E73656E7461756469746C6F67
+endaln
