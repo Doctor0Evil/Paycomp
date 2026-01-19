@@ -1,0 +1,60 @@
+aln filename qpudatashards/au_lifeforce_cybernano_bostrom2026.aln
+destination-path qpudatashards/au_lifeforce_cybernano_bostrom2026
+
+csv
+field,datatype,description,required,scope
+
+did,string,"Primary DID / Bostrom tuple this lifeforce envelope is bound to.",true,profile
+austatus,string,"organicallyintegratedaugmentedcitizen nonaugmented other.",true,profile
+lifeforce_profile_version,string,"lifeforce_cybernano_2026 Phoenix-compatible grammar version.",true,profile
+
+lifeforce_level,float,"0.0–1.0 normalized current lifeforce (cy+zen+chi aggregate).",true,profile
+lifeforce_floor,float,"Minimum sustainable lifeforce reserve; must never be crossed.",true,profile
+lifeforce_curve_margin,float,"Safety margin above floor to avoid band snapping during drains.",true,profile
+
+lifeforce_band,string,"stable fragile recovering other; maps to LifeforceBand enum.",true,profile
+
+bloodtoken_balance_microusd3,uint,"Current local-only nanoswarm blood-token balance (1=0.001 USD).",true,state
+
+nano_local_only_required,bool,"Global invariant: nanoswarm debits must be local-only.",true,policy
+nano_merchant_mix_forbidden,bool,"Global invariant: nanoswarm may not interface with merchant processors.",true,policy
+
+max_lifeforce_delta_stable,float,"Max allowed lifeforce delta for a single nano debit in stable band.",true,policy
+max_lifeforce_delta_fragile,float,"Max allowed delta in fragile band.",true,policy
+max_lifeforce_delta_recovering,float,"Max allowed delta in recovering band.",true,policy
+
+nanodebit_hostmaintenance_allowed,bool,"Allow NanoDebitClass.HostMaintenance.",true,policy
+nanodebit_localeco_allowed,bool,"Allow NanoDebitClass.LocalEcoAction.",true,policy
+nanodebit_merchantpayment_allowed,bool,"Allow NanoDebitClass.MerchantPayment (must be false).",true,policy
+
+hextrace_policy_anchor,string,"Hex tag / Googolswarm anchor for this lifeforce policy envelope.",false,policy
+endcsv
+
+csv
+field,value
+
+did,"bostrom18sd2ujv24ual9c9pshtxys6j8knh6xaead9ye7"
+austatus,"organicallyintegratedaugmentedcitizen"
+lifeforce_profile_version,"lifeforce_cybernano_2026"
+
+lifeforce_level,0.82
+lifeforce_floor,0.35
+lifeforce_curve_margin,0.15
+
+lifeforce_band,"stable"
+
+bloodtoken_balance_microusd3,2500
+
+nano_local_only_required,true
+nano_merchant_mix_forbidden,true
+
+max_lifeforce_delta_stable,0.10
+max_lifeforce_delta_fragile,0.03
+max_lifeforce_delta_recovering,0.02
+
+nanodebit_hostmaintenance_allowed,true
+nanodebit_localeco_allowed,true
+nanodebit_merchantpayment_allowed,false
+
+hextrace_policy_anchor,"0xLIFEFORCE_CYBERNANO_2026_PHOENIX"
+endcsv
