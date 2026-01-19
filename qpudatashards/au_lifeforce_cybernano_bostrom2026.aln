@@ -27,7 +27,20 @@ nanodebit_hostmaintenance_allowed,bool,"Allow NanoDebitClass.HostMaintenance.",t
 nanodebit_localeco_allowed,bool,"Allow NanoDebitClass.LocalEcoAction.",true,policy
 nanodebit_merchantpayment_allowed,bool,"Allow NanoDebitClass.MerchantPayment (must be false).",true,policy
 
-hextrace_policy_anchor,string,"Hex tag / Googolswarm anchor for this lifeforce policy envelope.",false,policy
+-- K/E/R and eco metrics for nanoswarm blood-token flows --
+
+k_knowledge_contribution,float,"0.0–1.0 normalized K increment potential from this nanoswarm profile (e.g., biome data, regenerative insights).",false,metrics
+e_eco_impact_score,float,"0.0–1.0 normalized EcoImpactScore for nanoswarm operations (higher = more eco-positive).",false,metrics
+r_risk_of_harm,float,"0.0–1.0 normalized risk-of-harm score for nanoswarm operations (higher = more risk).",false,metrics
+
+ker_update_on_nano_debit,bool,"If true, every approved nanoswarm debit emits a K/E/R delta into Paycomp/BioPay metrics.",true,metrics
+max_risk_of_harm,float,"Upper bound on allowable r_risk_of_harm; nanoswarm ops above this are forbidden.",true,metrics
+min_eco_impact_score,float,"Lower bound on allowable e_eco_impact_score; ops below this are forbidden.",true,metrics
+
+annual_energy_saved_kwh,float,"Estimated annual kWh saved by using nanoswarm-local operations instead of device/remote compute.",false,metrics
+co2e_avoided_kg_per_year,float,"Estimated annual CO2e avoided from nanoswarm-local substitution.",false,metrics
+
+hextrace_policy_anchor,string,"Hex tag / Googolswarm anchor for this lifeforce + eco policy envelope.",false,policy
 endcsv
 
 csv
@@ -56,5 +69,16 @@ nanodebit_hostmaintenance_allowed,true
 nanodebit_localeco_allowed,true
 nanodebit_merchantpayment_allowed,false
 
-hextrace_policy_anchor,"0xLIFEFORCE_CYBERNANO_2026_PHOENIX"
+k_knowledge_contribution,0.72
+e_eco_impact_score,0.88
+r_risk_of_harm,0.18
+
+ker_update_on_nano_debit,true
+max_risk_of_harm,0.25
+min_eco_impact_score,0.60
+
+annual_energy_saved_kwh,42.0
+co2e_avoided_kg_per_year,18.5
+
+hextrace_policy_anchor,"0xLIFEFORCE_CYBERNANO_KER_2026_PHOENIX"
 endcsv
