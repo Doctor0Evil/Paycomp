@@ -86,3 +86,31 @@ pub struct DecisionRecord {
     pub reason_code: String,
     pub notes: String,
 }
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct EvolutionAuditRecord {
+    pub host_did: HostDid,
+    pub upgrade_id: UpgradeId,
+    pub evolution_id: EvolutionId,
+
+    /// Append-only sequence of decision hashes (hex)
+    pub decision_hashes: Vec<String>,
+
+    /// Optional metadata (unchanged across appended decisions)
+    pub created_ms: i64,
+}
+
+impl EvolutionAuditRecord {
+    pub fn new(host_did: HostDid, upgrade_id: UpgradeId, evo_id: EvolutionId, created_ms: i64) -> Self {
+        Self {
+            host_did,
+            upgrade_id,
+            evolution_id: evo_id,
+            decision_hashes: Vec::new(),
+            created_ms,
+        }
+    }
+
+    pub fn append_decision_hash(&mut self, hash_hex: String) {
+        self.decision_hashes.push(hash_hex);
+    }
+}
