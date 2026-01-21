@@ -1,0 +1,23 @@
+aln_schema: decision.ledger.entry.v1
+key:
+  - host_did
+  - upgrade_id
+  - evolution_id
+fields:
+  entry_id: uuid
+  host_did: did
+  upgrade_id: string
+  evolution_id: string
+  role: enum.DecisionRole
+  kind: enum.DecisionKind
+  roh_before: f32?
+  roh_after: f32?
+  roh_bound: f32? # ≤ 0.30 enforced in Rust
+  reason_code: string
+  notes: string
+  biophysical_envelope_hash: hex
+  env_context_hash: hex
+  governance_envelope_hash: hex
+  decision_record_hash: hex
+  did_signature_hex: hex
+  timestamp_ms: i64
