@@ -1,3 +1,5 @@
+include!(concat!(env!("OUT_DIR"), "/aln_schemas.rs"));
+
 pub mod roles;
 pub mod risk;
 pub mod handlers;
