@@ -1,5 +1,21 @@
 use crate::risk::{ContentPageShard, WebsiteGovernanceConfig};
 use crate::roles::WebRole;
+use crate::NeurorightsFirewall;
+
+pub struct Router<F: NeurorightsFirewall> {
+    pub firewall: F,
+    pub cfg: WebsiteGovernanceConfig,
+}
+
+impl<F: NeurorightsFirewall> Router<F> {
+    pub fn handle_mutation(
+        &self,
+        current_shard: &ContentPageShard,
+        req: &PageMutationRequest,
+    ) -> PageMutationResponse {
+        self.firewall.validate_page_mutation(&self.cfg, current_shard, req)
+    }
+}
 
 #[derive(Clone, Debug)]
 pub struct PageMutationRequest {
