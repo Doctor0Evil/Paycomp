@@ -1,0 +1,8 @@
+aln_schema: asset.chat.stake.v1
+fields:
+  asset_id: string
+  owner_did: did
+  staked_micro_usd: i64
+  k_score: f32
+  e_score: f32
+  r_score: f32
