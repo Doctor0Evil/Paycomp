@@ -98,6 +98,28 @@ pub struct EvolutionAuditRecord {
     /// Optional metadata (unchanged across appended decisions)
     pub created_ms: i64,
 }
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct BloodTokenReserveProfile {
+    pub host_did: HostDid,
+    pub baseline_hemoglobin: f32,
+    pub baseline_volume_ml: f32,
+    pub token_capacity_ml: f32,
+    pub max_daily_spend_ml: f32,
+    pub corridor_id: String,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct BloodSpendProof {
+    pub host_did: HostDid,
+    pub session_id: String,
+    pub corridor_id: String,
+    pub requested_ml: f32,
+    pub approved_ml: f32,
+    pub biomarker_envelope_hash: String,
+    pub roh_before: RoH,
+    pub roh_after: RoH,
+    pub did_signature_hex: String,
+}
 
 impl EvolutionAuditRecord {
     pub fn new(host_did: HostDid, upgrade_id: UpgradeId, evo_id: EvolutionId, created_ms: i64) -> Self {
