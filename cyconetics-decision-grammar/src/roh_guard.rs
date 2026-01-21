@@ -48,3 +48,39 @@ pub fn guarded_decision(predicted: RoH) -> (UpgradeDecision, Option<RoHBound30>)
         (UpgradeDecision::Denied, None)
     }
 }
+use serde::{Deserialize, Serialize};
+
+/// Minimum bundle size for meaningful RoH evidence
+pub const MIN_EVIDENCE_POINTS: usize = 10;
+
+/// Evidence bundle for RoH estimation
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct EvidenceBundle {
+    pub biokarma_points: Vec<f32>,
+    pub device_hour_points: Vec<f32>,
+    pub eco_impact_points: Vec<f32>,
+}
+
+impl EvidenceBundle {
+    pub fn is_sufficient(&self) -> bool {
+        self.biokarma_points.len() >= MIN_EVIDENCE_POINTS
+            && self.device_hour_points.len() >= MIN_EVIDENCE_POINTS
+            && self.eco_impact_points.len() >= MIN_EVIDENCE_POINTS
+    }
+}
+
+/// Example function subject to 10-element bundle requirement
+pub fn roh_from_biokarma(bundle: &EvidenceBundle) -> Option<RoH> {
+    if !bundle.is_sufficient() {
+        return None;
+    }
+    let avg_bio = bundle.biokarma_points.iter().copied().sum::<f32>()
+        / (bundle.biokarma_points.len() as f32);
+    let avg_device = bundle.device_hour_points.iter().copied().sum::<f32>()
+        / (bundle.device_hour_points.len() as f32);
+    let avg_eco = bundle.eco_impact_points.iter().copied().sum::<f32>()
+        / (bundle.eco_impact_points.len() as f32);
+
+    let roh = 0.4 * (1.0 - avg_bio) + 0.3 * avg_device + 0.3 * (1.0 - avg_eco);
+    Some(roh.clamp(0.0, 1.0))
+}
